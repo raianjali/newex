@@ -1,8 +1,10 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+
 
 class UsersController extends Controller
 {
@@ -15,18 +17,22 @@ class UsersController extends Controller
 
     public function superadminlogin()
     {
-        return 'This is a super admin route.';
+        $user = DB::select('select * from users where role_id = 1');
+        return response()->json($user);
     }
     public function adminlogin()
     {
-        return 'This route is for admin users.';
+        $user = DB::select('select * from users where role_id = 2');
+        return response()->json($user);
     }
     public function teacherlogin()
     {
-        return 'This is a teacher route.';
+        $user = DB::select('select * from users where role_id = 3');
+        return response()->json($user);
     }
     public function studentlogin()
     {
-        return 'This route is for student users.';
+        $user = DB::select('select * from users where role_id = 4');
+        return response()->json($user);
     }
 }
