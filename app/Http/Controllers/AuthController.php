@@ -40,7 +40,7 @@ class AuthController extends Controller
                         if ($token = auth()->attempt($credentials)) 
                         {
                             $user = User::where('email', '=', $credentials['email'])->first();
-                            if($user->status==1&&$user->role_id==$credentials['role_id'])
+                            if($user->status==1&&$user->role_id==$credentials['role_id']&&$user->role_id!=4)
                             {
                                 return response()->json(['Results' =>['token'=>$token,'user'=>$user],'message'=>'Succesful','requestLocation'=> Request::getRequestUri(),'status'=> 200,'success'=> true,'metadata'=>(object) array()],200);
                             }
@@ -68,7 +68,7 @@ class AuthController extends Controller
                         if ($token = auth()->attempt($credentials)) 
                         {
                             $user = User::where('roll_no', '=', $credentials['roll_no'])->first();
-                            if($user->status==1&&$user->role_id==$credentials['role_id'])
+                            if($user->status==1&&$user->role_id==$credentials['role_id']&&$user->role_id==4)
                             {
                                 return response()->json(['Results' =>['token'=>$token,'user'=>$user],'message'=>'Succesful','requestLocation'=> Request::getRequestUri(),'status'=> 200,'success'=> true,'metadata'=>(object) array()],200);
                             }
